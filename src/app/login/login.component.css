@@ -1,0 +1,18 @@
+#title {
+    text-align: center;
+}
+
+.textbox {
+    text-align: center;
+}
+
+input {
+    width: 250px;
+    height: 40px;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}

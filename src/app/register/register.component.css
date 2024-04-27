@@ -1,0 +1,17 @@
+.page-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+#email-help {
+    width: 100%; /* Set the width to 100% */
+    max-width: 200px; /* Set a maximum width to allow wrapping */
+    white-space: normal; /* Allow text to wrap */
+}
+
+#password-help {
+    width: 100%; /* Set the width to 100% */
+    max-width: 200px; /* Set a maximum width to allow wrapping */
+    white-space: normal; /* Allow text to wrap */
+}

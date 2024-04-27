@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MenubarComponent } from './menubar/menubar.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, RouterLink, RouterLinkActive, MenubarComponent],
+    imports: [FormsModule, RouterOutlet, RouterLink, RouterLinkActive, MenubarComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })

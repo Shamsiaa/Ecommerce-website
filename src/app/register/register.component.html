@@ -1,1 +1,97 @@
-<p>Register page placeholder</p>
+<div class="flex flex-column page-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <p>Fields marked * are required.</p>
+        <h3>Name</h3>
+        <div class="flex flex-column gap-4 align-items-left">
+            <div class="flex flex-wrap gap-3">
+                <div class="flex align-items-center">
+                    <p-radioButton name="salutation" value="Mr." formControlName="salutation" inputId="salutation1"></p-radioButton>
+                    <label for="salutation1" class="ml-2">Mr</label>
+                </div>
+                
+                <div class="flex align-items-center">
+                    <p-radioButton name="salutation" value="Mrs." formControlName="salutation" inputId="salutation2"></p-radioButton>
+                    <label for="salutation2" class="ml-2">Mrs</label>
+                </div>
+                <div class="flex align-items-center">
+                    <p-radioButton name="salutation" value="Other" formControlName="salutation" inputId="other"></p-radioButton>
+                    <label for="other" class="ml-2">Other</label>
+                </div>
+                <div class="flex align-items-center" *ngIf="registerForm.get('salutation')?.value === 'Other'">
+                    <input pInputText type="text" placeholder="Other" formControlName="otherSalutation" />
+                </div>
+            </div>
+
+            <div  class="flex flex-wrap gap-3">
+                <div class="flex flex-column">
+                    <input pInputText id="firstname" type="text" placeholder="* First Name" formControlName="firstName" />
+                    <small style="color: red;" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">First Name is required!</small>
+                </div>
+                <div class="flex flex-column">
+                    <input pInputText id="lastname" type="text" placeholder="* Last Name" formControlName="lastName" />
+                    <small style="color: red;" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">Last Name is required!</small>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <div class="flex flex-column gap-2">
+                    <input pInputText id="email" aria-describedby="email-help" placeholder="* Email" formControlName="email" />
+                    <small style="color: red;" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Email is required!</small>
+                    <small style="width: 100%; white-space: normal;" id="email-help">You will need your email to login to the store.</small>
+                </div>
+                <div class="flex flex-column gap-2">
+                    <input pInputText id="password" aria-describedby="password-help" placeholder="* Password" formControlName="password" />
+                    <small style="color: red;" *ngIf="password?.invalid && (password?.dirty || password?.touched)">Password is required!</small>
+                    <small id="password-help">Your password needs to be at least 8 characters</small>
+                </div>
+            </div>
+
+        <h3>Birthdate</h3>
+        <p-calendar formControlName="birthdate" [iconDisplay]="'input'" [showIcon]="true" placeholder="* Birthdate"></p-calendar>
+        <small style="color: red;" *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">Birthdate is required!</small>
+
+        <h3>Address</h3>
+            <div  class="flex flex-wrap gap-3">
+                <div class="flex flex-column">
+                    <input pInputText id="street" type="text" placeholder="* Street" formControlName="street" />
+                    <small style="color: red;" *ngIf="password?.invalid && (street?.dirty || street?.touched)">street is required!</small>
+                </div>
+                <div class="flex flex-column">
+                    <input pInputText id="houseNumber" type="text" placeholder="* No." formControlName="houseNumber" />
+                    <small style="color: red;" *ngIf="houseNumber?.invalid && (houseNumber?.dirty || houseNumber?.touched)">House number is required!</small>
+                </div>
+            </div>
+            <div  class="flex flex-wrap gap-3">
+                <div class="flex flex-column">
+                    <input pInputText id="postalCode" type="text" placeholder="* Postal Code" formControlName="postalCode" />
+                    <small style="color: red;" *ngIf="postalCode?.invalid && (postalCode?.dirty || postalCode?.touched)">Postal code is required!</small>
+                </div>
+                <div class="flex flex-column">
+                    <input pInputText id="city" type="text" placeholder="* City" formControlName="city" />
+                    <small style="color: red;" *ngIf="city?.invalid && (city?.dirty || city?.touched)">City is required!</small>
+                </div>
+            </div>
+            <div class="flex flex-column flex-wrap gap-3">
+                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" formControlName="country" optionLabel="name" [showClear]="true" placeholder="Select a Country">
+                  <ng-template pTemplate="selectedItem">
+                    <div class="flex align-items-center flex-column gap-2" *ngIf="selectedCountry">
+                      <div>{{ selectedCountry.name }}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template let-country pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                      <div>{{ country.name }}</div>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+                <small style="color: red;" *ngIf="isCountryInvalid()">Please select a country.</small>
+              </div>
+              
+            <div  class="flex flex-wrap gap-3">
+                Your address will be used as the default shipping address.
+            </div>
+        </div>
+        <div style="padding-bottom: 100px; padding-top: 20px;">
+            <button pButton pRipple label="Submit" class="p-button-success" [disabled]="!registerForm.valid"></button>
+        </div>
+    </form>
+</div>

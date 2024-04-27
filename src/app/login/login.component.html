@@ -1,1 +1,14 @@
-<p>This will contain the login form. (Assignment 2)</p>
+<div class="flex flex-column page-container">
+    <h1 id="title">Log In</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div style="padding-bottom: 20px;" class="flex flex-column">
+            <input pInputText id="email" placeholder="Email" formControlName="email" />
+            <small style="color: red;" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Email is required!</small>
+        </div>
+        <div style="padding-bottom: 20px;" class="flex flex-column">
+            <input pInputText id="password" placeholder="Password" formControlName="password" />
+            <small style="color: red;" *ngIf="password?.invalid && (password?.dirty || password?.touched)">Password is required!</small>
+        </div>
+        <button pButton pRipple label="Log In" class="p-button-success"></button>
+    </form>
+</div>
