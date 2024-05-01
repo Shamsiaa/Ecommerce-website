@@ -1,0 +1,21 @@
+.product-card {
+    display: flex;
+    margin-left: 100px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-img-top {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+}
+
+.price-chip {
+    background-color: rgba(30, 144, 255, 0.8);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    width: fit-content;
+}
+
+.card-title {
+    font-weight: 600;
+}
