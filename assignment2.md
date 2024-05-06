@@ -2,7 +2,7 @@
 
 ## Assignment 2: Log In and Registration Form
 
-**Achieved Points: [__/10]**  
+**Achieved Points: [9.5/10]** ✅ 
 **Deadline: 30.04.2024 13:30**  
 
 Log In Form:
@@ -27,10 +27,12 @@ You can find all design patterns in the book [Designing Interfaces: Patterns for
 
 In this assignment, you will design and implement the forms for the Log In and Registration page. 
 
-- [ ] [Implement Log In Form](#implement-log-in-form) (3 Points)
-- [ ] [Implement Register Form](#implement-register-form) (4 Points)
-- [ ] [Add Input Hints to Register Form](#add-input-hints-to-register-form) (1 Points)
-- [ ] [Add Input Validation to Log In and Register Form](#add-input-validation-to-log-in-and-register-form) (2 Points)
+- [ ] [Implement Log In Form](#implement-log-in-form) (3/3 Points)
+- [ ] [Implement Register Form](#implement-register-form) (4/4 Points)
+- [ ] [Add Input Hints to Register Form](#add-input-hints-to-register-form) (1/1 Points)
+- [ ] [Add Input Validation to Log In and Register Form](#add-input-validation-to-log-in-and-register-form) (1.5/2 Points)
+  
+  > ⚠️ Some error messages do not reflect the specific error. E.g. Email error message does not inform the user that address is malformatted. See Design Patterns book for high level guidelines for good error messages.
 - [ ] [Tag the Final Commit](#tag-the-final-commit)
 
 ### Instructions
