@@ -21,4 +21,7 @@
             </div>
         </ng-template>
     </p-dataView>
+    <div class="loadingButton">
+        <p-button label="Load more products" [loading]="loading" loadingIcon="pi pi-spinner" (onClick)="loadMoreProducts()"></p-button>
+    </div>
 </div>
