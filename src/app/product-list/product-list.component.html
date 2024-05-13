@@ -1,4 +1,5 @@
-<div class="card">
+html
+ <div class="card">
     <p-dataView #dv [value]="products" [layout]="customLayout">
         <ng-template pTemplate="header">
             <div class="flex justify-content-end">
@@ -21,7 +22,11 @@
             </div>
         </ng-template>
     </p-dataView>
-    <div class="loadingButton">
-        <p-button label="Load more products" [loading]="loading" loadingIcon="pi pi-spinner" (onClick)="loadMoreProducts()"></p-button>
+   <div *ngIf="loadingMore" class="loading-indicator">
+        <!-- Show loading indicator here -->
+        <span>Loading</span> <!-- Text "Loading" -->
+        <div class="spinner-container">
+            <i class="pi pi-spin pi-spinner"></i> <!-- Larger spinner icon -->
+        </div>
     </div>
 </div>
