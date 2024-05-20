@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../services/product';
 import { CommonModule } from '@angular/common';
+import { ImageModule } from 'primeng/image';
 
 @Component({
     selector: 'app-product-detail',
-    imports: [CommonModule],
+    imports: [CommonModule, ImageModule],
     standalone: true,
     templateUrl: './product-detail.component.html',
     styleUrls: ['./product-detail.component.css'],

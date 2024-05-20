@@ -1,6 +1,16 @@
 <div class="product-details-container">
   <div class="product-image">
-    <img [src]="getProductImage()" alt="Product Image" (error)="onImageError()">
+    <p-image 
+      [src]="getProductImage()"
+      [preview]="true"
+      alt="Product Image"
+      width="300"
+      (onError)="onImageError()"
+    >
+      <ng-template pTemplate="indicator">
+        <i class="pi pi-check"></i>
+      </ng-template>
+    </p-image>
   </div>
   <div class="product-info">
     <h1 class="product-title">{{ product.name }}</h1>
