@@ -1,25 +1,25 @@
 <div class="product-details-container">
-    <div class="product-image">
-        <img [src]="'./assets/products/images/' + product.id + '.jpg'" alt="Product Image">
+  <div class="product-image">
+    <img [src]="getProductImage()" alt="Product Image" (error)="onImageError()">
+  </div>
+  <div class="product-info">
+    <h1 class="product-title">{{ product.name }}</h1>
+    <h2 class="product-brand">{{ product.brand }}</h2>
+    <p class="product-price">${{ product.price }}</p>
+    <div class="color-variants">
+      <label style="margin-right: 10px" for="color">Color:</label>
+      <select id="color" (change)="onColorChange($event)">
+        <option *ngFor="let color of product.colors" [value]="color.color_id">{{ color.color_name }}</option>
+      </select>
     </div>
-    <div class="product-info">
-        <h1 class="product-title">{{ product.name }}</h1>
-        <h2 class="product-brand">{{ product.brand }}</h2>
-        <p class="product-price">${{ product.price }}</p>
-        <div class="color-variants">
-            <label style="margin-right: 10px" for="color">Color:</label>
-            <select id="color">
-                <option *ngFor="let color of product.colors" [value]="color.color_name">{{ color.color_name }}</option>
-            </select>
-        </div>
-        <div class="size-options">
-            <label style="margin-right: 10px" for="size">Size:</label>
-            <select id="size">
-                <option *ngFor="let size of product.sizes" [value]="size">{{ size }}</option>
-            </select>
-        </div>
-        <div class="product-description">
-            <p>Upgrade your wardrobe with this product. Expertly crafted for comfort and style, it's perfect for any occasion.</p>
-        </div>
+    <div class="size-options">
+      <label style="margin-right: 10px" for="size">Size:</label>
+      <select id="size">
+        <option *ngFor="let size of product.sizes" [value]="size">{{ size }}</option>
+      </select>
     </div>
+    <div class="product-description">
+      <p>Upgrade your wardrobe with this product. Expertly crafted for comfort and style, it's perfect for any occasion.</p>
+    </div>
+  </div>
 </div>

@@ -1,9 +1,8 @@
 <div class="product-card">
-    <img height="120px" width="90px" class="card-img-top" src="./assets/products/images/{{product.id}}.jpg" alt="Product Image">
-    <div class="details flex flex-column gap-2">
-        <div style="color: gray; padding-top: 10px;">{{ product.brand }}</div>
-        <a [routerLink]="['/products', product.id]" class="card-title">{{ product.name }}</a>
-        <span class="price-chip">{{ product.price }} €</span>
-    </div>
+  <img height="120px" width="90px" class="card-img-top" src="./assets/products/images/{{product.id}}.jpg" alt="Product Image">
+  <div class="details flex flex-column gap-2">
+    <div style="color: gray; padding-top: 10px;">{{ product.brand }}</div>
+    <a [routerLink]="['/products', product.id]" [queryParams]="{color: product.colors.at(0)?.color_id}" class="card-title">{{ product.name }}</a>
+    <span class="price-chip">{{ product.price }} €</span>
+  </div>
 </div>
-
