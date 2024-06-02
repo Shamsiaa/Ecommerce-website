@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../services/product';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { FiltersComponent } from '../filters/filters.component';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { DataViewModule } from 'primeng/dataview';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
@@ -19,6 +20,7 @@ import { Component, HostListener } from '@angular/core';
         ProductItemComponent,
         ProductGridComponent,
         DataViewModule,
+        FiltersComponent
     ],
 })
 export class ProductListComponent {
@@ -78,5 +80,10 @@ export class ProductListComponent {
         ) {
             this.loadMoreProducts();
         }
+    }
+    onFiltersChanged(filtersData: FiltersComponent) {
+        this.productService.getInitialProductMetadata(12, undefined, undefined, filtersData.selectedBrands, filtersData.selectedGenders, filtersData.selectedTypes).subscribe((products) => {
+            this.products = products;
+        });
     }
 }

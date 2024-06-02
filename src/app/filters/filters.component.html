@@ -1,0 +1,15 @@
+<div class="filters-sidebar">
+    <h2>Filters</h2>
+    <div class="filter-group">
+        <label for="brand">Brand:</label>
+        <p-multiSelect [options]="brands" [(ngModel)]="selectedBrands" optionLabel="label" placeholder="Select Brands" (onChange)="onFilterChange()"></p-multiSelect>
+    </div>
+    <div class="filter-group">
+        <label for="gender">Gender:</label>
+        <p-multiSelect [options]="genders" [(ngModel)]="selectedGenders" optionLabel="label" placeholder="Select Genders" (onChange)="onFilterChange()"></p-multiSelect>
+    </div>
+    <div class="filter-group">
+        <label for="type">Type:</label>
+        <p-multiSelect [options]="types" [(ngModel)]="selectedTypes" optionLabel="label" placeholder="Select Types" (onChange)="onFilterChange()"></p-multiSelect>
+    </div>
+</div>

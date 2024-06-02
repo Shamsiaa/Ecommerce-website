@@ -1,32 +1,37 @@
-
- <div class="card">
-    <p-dataView #dv [value]="products" [layout]="customLayout">
-        <ng-template pTemplate="header">
-            <div class="flex justify-content-end">
-                <p-dataViewLayoutOptions />
-            </div>
-        </ng-template>
-        <ng-template pTemplate="list" let-products>
-            <div class="grid grid-nogutter">
-                <div class="col-12" *ngFor="let product of products; let first = first" class="col-12">
-                <app-product-item [product]="product"></app-product-item>
+<div class="main-container">
+    <div class="filters-container">
+        <app-filters></app-filters>
+    </div>
+    <div class="products-container">
+        <div class="card">
+            <p-dataView #dv [value]="products" [layout]="customLayout">
+                <ng-template pTemplate="header">
+                    <div class="flex justify-content-end">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="list" let-products>
+                    <div class="grid grid-nogutter">
+                        <div class="col-12" *ngFor="let product of products; let first = first" class="col-12">
+                            <app-product-item [product]="product"></app-product-item>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-product pTemplate="grid" let-products>
+                    <div class="grid grid-nogutter">
+                        <div class="col-12 sm:col-6 md:col-4 xl:col-6 p-2" *ngFor="let product of products">
+                            <app-product-grid [product]="product"></app-product-grid>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+            <div *ngIf="loadingMore" class="loading-indicator">
+                <!-- Show loading indicator here -->
+                <span>Loading</span> <!-- Text "Loading" -->
+                <div class="spinner-container">
+                    <i class="pi pi-spin pi-spinner"></i> <!-- Larger spinner icon -->
                 </div>
             </div>
-        </ng-template>
-        <ng-template let-product pTemplate="grid" let-products>
-            <div class="grid grid-nogutter">
-                <div class="col-12 sm:col-6 md:col-4 xl:col-6 p-2" *ngFor="let product of products">
-                    <app-product-grid [product]="product"></app-product-grid>
-
-                </div>
-            </div>
-        </ng-template>
-    </p-dataView>
-   <div *ngIf="loadingMore" class="loading-indicator">
-        <!-- Show loading indicator here -->
-        <span>Loading</span> <!-- Text "Loading" -->
-        <div class="spinner-container">
-            <i class="pi pi-spin pi-spinner"></i> <!-- Larger spinner icon -->
         </div>
     </div>
 </div>

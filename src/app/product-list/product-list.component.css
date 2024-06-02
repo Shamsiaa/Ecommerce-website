@@ -31,3 +31,24 @@
     font-size: 1.2rem;
     color: #333; /* Dark color for text */
 }
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Adjust the ratio as needed */
+    gap: 20px; /* Space between columns */
+    padding: 20px; /* Optional: padding around the container */
+}
+
+.filters-container {
+    background-color: #f9f9f9; /* Background color for the filters sidebar */
+    padding: 20px; /* Padding inside the filters container */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for a lifted effect */
+}
+
+.products-container {
+    padding: 20px; /* Padding inside the products container */
+    background-color: #ffffff; /* Background color for the products container */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for a lifted effect */
+}

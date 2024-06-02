@@ -1,0 +1,14 @@
+.filters-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between filter groups */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 5px; /* Space between label and input */
+}
