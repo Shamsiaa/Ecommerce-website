@@ -12,4 +12,16 @@
         <label for="type">Type:</label>
         <p-multiSelect [options]="types" [(ngModel)]="selectedTypes" optionLabel="label" placeholder="Select Types" (onChange)="onFilterChange()"></p-multiSelect>
     </div>
+    <div class="filter-group">
+        <label for="category">Category:</label>
+        <p-multiSelect [options]="categories" [(ngModel)]="selectedCategories" optionLabel="label" placeholder="Select Categories" (onChange)="onFilterChange()"></p-multiSelect>
+    </div>
+    <div class="filter-group">
+        <label for="size">Size:</label>
+        <p-multiSelect [options]="sizes" [(ngModel)]="selectedSizes" optionLabel="label" placeholder="Select Sizes" (onChange)="onFilterChange()"></p-multiSelect>
+    </div>
+    <div class="filter-group">
+        <label for="color">Color:</label>
+        <p-multiSelect [options]="colors" [(ngModel)]="selectedColors" optionLabel="label" placeholder="Select Colors" (onChange)="onFilterChange()"></p-multiSelect>
+    </div>
 </div>

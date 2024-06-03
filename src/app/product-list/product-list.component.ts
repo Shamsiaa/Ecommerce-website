@@ -54,8 +54,11 @@ export class ProductListComponent {
         const selectedBrands = filters.selectedBrands.map((brand: any) => brand.value);
         const selectedGenders = filters.selectedGenders.map((gender: any) => gender.value);
         const selectedTypes = filters.selectedTypes.map((type: any) => type.value);
+        const selectedCategories = filters.selectedCategories.map((category: any) => category.value);
+        const selectedSizes = filters.selectedSizes.map((size: any) => size.value);
+        const selectedColors = filters.selectedColors.map((color: any) => color.value);
     
-        console.log(selectedBrands, selectedGenders, selectedTypes);
+        console.log(selectedBrands, selectedGenders, selectedTypes, selectedCategories, selectedPrices, selectedSizes, selectedColors);
     
         this.productService.getInitialProductMetadata(
             12,
@@ -63,11 +66,15 @@ export class ProductListComponent {
             '',
             selectedBrands,
             selectedGenders,
-            selectedTypes
+            selectedTypes,
+            selectedCategories,
+            selectedColors,
+            selectedSizes
         ).subscribe((products) => {
             this.products = products;
         });
     }
+    
     
     @HostListener('window:scroll', ['$event'])
     onWindowScroll(event: any) {
