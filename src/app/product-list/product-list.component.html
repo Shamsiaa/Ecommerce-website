@@ -9,7 +9,10 @@
                 <button pButton icon="pi pi-search" (click)="onSearch()"></button>
             </p-inputGroup>
         </div>
-        <div class="card">
+        <div *ngIf="noProducts" class="no-products-message">
+            <p>No products found matching your criteria.</p>
+        </div>
+        <div class="card" *ngIf="!noProducts">
             <p-dataView #dv [value]="products" [layout]="customLayout">
                 <ng-template pTemplate="header">
                     <div class="flex justify-content-end">

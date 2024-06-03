@@ -33,6 +33,7 @@ export class ProductListComponent {
     products: Product[] = [];
     loading: boolean = false;
     loadingMore: boolean = false;
+    noProducts: boolean = false; // Flag to indicate no products
     searchQuery: string = ''; // Add a property for the search query
 
     constructor(private productService: ProductService) {
@@ -44,16 +45,20 @@ export class ProductListComponent {
             .getInitialProductMetadata(12)
             .subscribe((products) => {
                 this.products = products;
+                this.noProducts = products.length === 0;
             });
     }
 
     loadMoreProducts() {
+        if (this.noProducts) return; // Prevent loading more if no products
+
         this.loadingMore = true;
         this.productService
             .getNextProductMetadata(6)
             .subscribe((newProducts) => {
                 this.products = [...this.products, ...newProducts];
                 this.loadingMore = false;
+                this.noProducts = this.products.length === 0;
             });
     }
 
@@ -99,6 +104,7 @@ export class ProductListComponent {
             )
             .subscribe((products) => {
                 this.products = products;
+                this.noProducts = products.length === 0;
             });
     }
 
@@ -119,7 +125,8 @@ export class ProductListComponent {
         if (
             documentHeight - viewportHeight - scrollPosition <
                 scrollThreshold &&
-            !this.loadingMore
+            !this.loadingMore &&
+            !this.noProducts
         ) {
             this.loadMoreProducts();
         }

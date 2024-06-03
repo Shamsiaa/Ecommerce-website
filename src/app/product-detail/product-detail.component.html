@@ -8,14 +8,14 @@
       (onError)="onImageError()"
     >
       <ng-template pTemplate="indicator">
-        <i class="pi pi-check"></i>
+        <i class="pi pi-eye"></i> <!-- Changed to eye icon -->
       </ng-template>
     </p-image>
   </div>
   <div class="product-info">
     <h1 class="product-title">{{ product.name }}</h1>
     <h2 class="product-brand">{{ product.brand }}</h2>
-    <p class="product-price">${{ product.price }}</p>
+    <p class="product-price">{{ product.price }} €</p>
     <div class="color-variants">
       <label style="margin-right: 10px" for="color">Color:</label>
       <select id="color" (change)="onColorChange($event)">

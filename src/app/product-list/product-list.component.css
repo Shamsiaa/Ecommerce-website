@@ -66,3 +66,11 @@
     font-size: 1em;
     cursor: pointer;
 }
+.no-products-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 1.2em;
+    color: #0051ff;
+}
