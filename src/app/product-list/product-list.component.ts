@@ -58,7 +58,7 @@ export class ProductListComponent {
         const selectedSizes = filters.selectedSizes.map((size: any) => size.value);
         const selectedColors = filters.selectedColors.map((color: any) => color.value);
     
-        console.log(selectedBrands, selectedGenders, selectedTypes, selectedCategories, selectedPrices, selectedSizes, selectedColors);
+        console.log(selectedBrands, selectedGenders, selectedTypes, selectedCategories, selectedSizes, selectedColors);
     
         this.productService.getInitialProductMetadata(
             12,
