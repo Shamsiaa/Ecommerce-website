@@ -7,6 +7,9 @@ import { FiltersComponent } from '../filters/filters.component';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { DataViewModule } from 'primeng/dataview';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
+import { FormsModule } from '@angular/forms';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-product-list',
@@ -19,14 +22,18 @@ import { ProductGridComponent } from '../product-grid/product-grid.component';
         ProductItemComponent,
         ProductGridComponent,
         DataViewModule,
-        FiltersComponent
+        FiltersComponent,
+        FormsModule,
+        InputGroupModule,
+        InputTextModule,
     ],
 })
 export class ProductListComponent {
     customLayout: 'list' | 'grid' = 'list';
     products: Product[] = [];
     loading: boolean = false;
-    loadingMore: boolean = false; // property to track loading during scroll
+    loadingMore: boolean = false;
+    searchQuery: string = ''; // Add a property for the search query
 
     constructor(private productService: ProductService) {
         this.loadInitialProducts();
@@ -41,63 +48,74 @@ export class ProductListComponent {
     }
 
     loadMoreProducts() {
-        this.loadingMore = true; // Set loadingMore to true when loading more items
+        this.loadingMore = true;
         this.productService
             .getNextProductMetadata(6)
             .subscribe((newProducts) => {
                 this.products = [...this.products, ...newProducts];
-                this.loadingMore = false; // Set loadingMore back to false when loading is complete
+                this.loadingMore = false;
             });
     }
 
     onFiltersChanged(filters: any) {
-        const selectedBrands = filters.selectedBrands.map((brand: any) => brand.value);
-        const selectedGenders = filters.selectedGenders.map((gender: any) => gender.value);
-        const selectedTypes = filters.selectedTypes.map((type: any) => type.value);
-        const selectedCategories = filters.selectedCategories.map((category: any) => category.value);
-        const selectedSizes = filters.selectedSizes.map((size: any) => size.value);
-        const selectedColors = filters.selectedColors.map((color: any) => color.value);
-    
-        console.log(selectedBrands, selectedGenders, selectedTypes, selectedCategories, selectedSizes, selectedColors);
-    
-        this.productService.getInitialProductMetadata(
-            12,
-            undefined,
-            '',
-            selectedBrands,
-            selectedGenders,
-            selectedTypes,
-            selectedCategories,
-            selectedColors,
-            selectedSizes
-        ).subscribe((products) => {
-            this.products = products;
-        });
+        this.applyFiltersAndSearch(filters);
     }
-    
-    
+
+    onSearch() {
+        this.applyFiltersAndSearch();
+    }
+
+    applyFiltersAndSearch(filters?: any) {
+        const selectedBrands = filters
+            ? filters.selectedBrands.map((brand: any) => brand.value)
+            : [];
+        const selectedGenders = filters
+            ? filters.selectedGenders.map((gender: any) => gender.value)
+            : [];
+        const selectedTypes = filters
+            ? filters.selectedTypes.map((type: any) => type.value)
+            : [];
+        const selectedCategories = filters
+            ? filters.selectedCategories.map((category: any) => category.value)
+            : [];
+        const selectedSizes = filters
+            ? filters.selectedSizes.map((size: any) => size.value)
+            : [];
+        const selectedColors = filters
+            ? filters.selectedColors.map((color: any) => color.value)
+            : [];
+
+        this.productService
+            .getInitialProductMetadata(
+                12,
+                undefined,
+                this.searchQuery,
+                selectedBrands,
+                selectedGenders,
+                selectedTypes,
+                selectedCategories,
+                selectedColors,
+                selectedSizes
+            )
+            .subscribe((products) => {
+                this.products = products;
+            });
+    }
+
     @HostListener('window:scroll', ['$event'])
     onWindowScroll(event: any) {
-        // Height of the document
         const documentHeight = document.documentElement.scrollHeight;
-
-        // Height of the viewport
         const viewportHeight =
             window.innerHeight ||
             document.documentElement.clientHeight ||
             document.body.clientHeight;
-
-        // Current scroll position
         const scrollPosition =
             window.pageYOffset ||
             document.documentElement.scrollTop ||
             document.body.scrollTop ||
             0;
+        const scrollThreshold = 100;
 
-        // Threshold to trigger loading more data
-        const scrollThreshold = 100; 
-
-        // Check if the user has scrolled to the bottom of the page or reached the threshold
         if (
             documentHeight - viewportHeight - scrollPosition <
                 scrollThreshold &&

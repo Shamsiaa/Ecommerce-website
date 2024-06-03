@@ -1,9 +1,14 @@
 <div class="main-container">
     <div class="filters-container">
         <app-filters (filtersChanged)="onFiltersChanged($event)"></app-filters>
-
     </div>
     <div class="products-container">
+        <div class="search-bar">
+            <p-inputGroup>
+                <input type="text" pInputText [(ngModel)]="searchQuery" placeholder="Search products..." (keyup.enter)="onSearch()">
+                <button pButton icon="pi pi-search" (click)="onSearch()"></button>
+            </p-inputGroup>
+        </div>
         <div class="card">
             <p-dataView #dv [value]="products" [layout]="customLayout">
                 <ng-template pTemplate="header">
@@ -27,10 +32,9 @@
                 </ng-template>
             </p-dataView>
             <div *ngIf="loadingMore" class="loading-indicator">
-                <!-- Show loading indicator here -->
-                <span>Loading</span> <!-- Text "Loading" -->
+                <span>Loading</span>
                 <div class="spinner-container">
-                    <i class="pi pi-spin pi-spinner"></i> <!-- Larger spinner icon -->
+                    <i class="pi pi-spin pi-spinner"></i>
                 </div>
             </div>
         </div>
