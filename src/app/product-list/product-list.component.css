@@ -47,7 +47,6 @@
 }
 
 .products-container {
-    padding: 20px; /* Padding inside the products container */
     background-color: #ffffff; /* Background color for the products container */
     border-radius: 5px; /* Rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for a lifted effect */

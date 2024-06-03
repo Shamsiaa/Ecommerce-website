@@ -1,4 +1,4 @@
-//import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../services/product';
 import { ButtonModule } from 'primeng/button';
@@ -7,13 +7,12 @@ import { FiltersComponent } from '../filters/filters.component';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { DataViewModule } from 'primeng/dataview';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
-import { Component, HostListener } from '@angular/core';
 
 @Component({
     selector: 'app-product-list',
     standalone: true,
     templateUrl: './product-list.component.html',
-    styleUrl: './product-list.component.css',
+    styleUrls: ['./product-list.component.css'],
     imports: [
         CommonModule,
         ButtonModule,
@@ -51,6 +50,25 @@ export class ProductListComponent {
             });
     }
 
+    onFiltersChanged(filters: any) {
+        const selectedBrands = filters.selectedBrands.map((brand: any) => brand.value);
+        const selectedGenders = filters.selectedGenders.map((gender: any) => gender.value);
+        const selectedTypes = filters.selectedTypes.map((type: any) => type.value);
+    
+        console.log(selectedBrands, selectedGenders, selectedTypes);
+    
+        this.productService.getInitialProductMetadata(
+            12,
+            undefined,
+            '',
+            selectedBrands,
+            selectedGenders,
+            selectedTypes
+        ).subscribe((products) => {
+            this.products = products;
+        });
+    }
+    
     @HostListener('window:scroll', ['$event'])
     onWindowScroll(event: any) {
         // Height of the document
@@ -80,10 +98,5 @@ export class ProductListComponent {
         ) {
             this.loadMoreProducts();
         }
-    }
-    onFiltersChanged(filtersData: FiltersComponent) {
-        this.productService.getInitialProductMetadata(12, undefined, undefined, filtersData.selectedBrands, filtersData.selectedGenders, filtersData.selectedTypes).subscribe((products) => {
-            this.products = products;
-        });
     }
 }

@@ -6,6 +6,7 @@
 
 .card-img-top {
     flex-shrink: 0; /* Prevent the image from shrinking */
+    
 }
 
 .price-chip {

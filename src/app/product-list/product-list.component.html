@@ -1,6 +1,7 @@
 <div class="main-container">
     <div class="filters-container">
-        <app-filters></app-filters>
+        <app-filters (filtersChanged)="onFiltersChanged($event)"></app-filters>
+
     </div>
     <div class="products-container">
         <div class="card">
