@@ -2,23 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Badge, BadgeModule } from 'primeng/badge';
+import { CartItem } from '../services/cart-item';
+import { CartService } from '../services/cart.service';
 
 @Component({
     selector: 'app-menubar',
     standalone: true,
-    imports: [CommonModule, ButtonModule, RouterModule],
+    imports: [CommonModule, ButtonModule, RouterModule, BadgeModule],
     templateUrl: './menubar.component.html',
     styleUrl: './menubar.component.css',
 })
 export class MenubarComponent implements OnInit {
+    totalCartItems: any = '';
 
-    constructor(private router: Router) { }
+    constructor(private cartService: CartService) { }
 
     ngOnInit(): void {
-        // This code runs after the component's been constructed.
-        // The constructor (see above) should only perform lightweight operations.
-        // Everything else goes here. Component needs to implement OnInit interface.
-        // See https://angular.io/guide/lifecycle-hooks for more info about the component lifecycle
+        this.updateTotalCartItems();
     }
 
+    updateTotalCartItems() {
+        this.totalCartItems = this.cartService.getTotalCartItems();
+    }
 }
+

@@ -22,14 +22,15 @@
         <option *ngFor="let color of product.colors" [value]="color.color_id">{{ color.color_name }}</option>
       </select>
     </div>
-    <div class="size-options">
-      <label style="margin-right: 10px" for="size">Size:</label>
-      <select id="size">
-        <option *ngFor="let size of product.sizes" [value]="size">{{ size }}</option>
+    <div>
+      <label for="sizeSelect">Size:</label>
+      <select id="sizeSelect" (change)="onSizeChange($event)">
+          <option *ngFor="let size of product.sizes" [value]="size">{{ size }}</option>
       </select>
-    </div>
+  </div>
     <div class="product-description">
       <p>Upgrade your wardrobe with this product. Expertly crafted for comfort and style, it's perfect for any occasion.</p>
     </div>
+    <button pButton type="button" icon="pi pi-shopping-cart" label="Add to Cart" (click)="addToCart()"></button>
   </div>
 </div>
