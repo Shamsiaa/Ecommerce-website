@@ -1,0 +1,94 @@
+<p-stepper [linear]="true">
+    <p-stepperPanel header="Address">
+        <ng-template pTemplate="content" let-nextCallback="nextCallback">
+            <form [formGroup]="addressForm" (ngSubmit)="nextCallback.emit()">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input id="name" formControlName="name" type="text" pInputText placeholder="John Doe"/>
+                    <small *ngIf="addressForm.get('name')?.invalid && addressForm.get('name')?.touched">Name is required.</small>
+                </div>
+                <div class="field">
+                    <label for="street">Street</label>
+                    <input id="street" formControlName="street" type="text" pInputText placeholder="123 Main St"/>
+                    <small *ngIf="addressForm.get('street')?.invalid && addressForm.get('street')?.touched">Street is required.</small>
+                </div>
+                <div class="field">
+                    <label for="city">City</label>
+                    <input id="city" formControlName="city" type="text" pInputText placeholder="Anytown"/>
+                    <small *ngIf="addressForm.get('city')?.invalid && addressForm.get('city')?.touched">City is required.</small>
+                </div>
+                <div class="field">
+                    <label for="zip">ZIP Code</label>
+                    <input id="zip" formControlName="zip" type="text" pInputText placeholder="12345"/>
+                    <small *ngIf="addressForm.get('zip')?.invalid && addressForm.get('zip')?.touched">ZIP Code is required.</small>
+                </div>
+                <div class="field">
+                    <label for="country">Country</label>
+                    <input id="country" formControlName="country" type="text" pInputText placeholder="USA"/>
+                    <small *ngIf="addressForm.get('country')?.invalid && addressForm.get('country')?.touched">Country is required.</small>
+                </div>
+                <div class="flex pt-4 justify-content-end">
+                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" 
+                              [disabled]="!isAddressFormValid()" (onClick)="nextCallback.emit()" />
+                </div>
+            </form>
+        </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Delivery & Payment">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+            <form [formGroup]="deliveryPaymentForm" (ngSubmit)="nextCallback.emit()">
+                <div class="field">
+                    <label for="deliveryMethod">Delivery Method</label>
+                    <div *ngFor="let option of deliveryOptions" class="field-radiobutton">
+                        <p-radioButton name="deliveryMethod" [value]="option.value" formControlName="deliveryMethod"></p-radioButton>
+                        <label><i [class]="option.icon"></i> {{ option.label }}</label>
+                    </div>
+                    <small *ngIf="deliveryPaymentForm.get('deliveryMethod')?.invalid && deliveryPaymentForm.get('deliveryMethod')?.touched">Delivery method is required.</small>
+                </div>
+                <div class="field">
+                    <label for="paymentMethod">Payment Method</label>
+                    <div *ngFor="let option of paymentOptions" class="field-radiobutton">
+                        <p-radioButton name="paymentMethod" [value]="option.value" formControlName="paymentMethod"></p-radioButton>
+                        <label><i [class]="option.icon"></i> {{ option.label }}</label>
+                    </div>
+                    <small *ngIf="deliveryPaymentForm.get('paymentMethod')?.invalid && deliveryPaymentForm.get('paymentMethod')?.touched">Payment method is required.</small>
+                </div>
+                <div class="flex pt-4 justify-content-between">
+                    <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                              [disabled]="!isDeliveryPaymentFormValid()" (onClick)="updateTotalPrice();nextCallback.emit() " />
+                </div>
+            </form>
+        </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Summary">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback">
+            <div class="summary-container">
+                <h3>Order Summary</h3>
+                <div class="summary-content">
+                    <div class="summary-item">
+                        <span class="label">Address:</span>
+                        <span class="value">{{ addressForm.value.name }}, {{ addressForm.value.street }}, {{ addressForm.value.city }}, {{ addressForm.value.zip }}, {{ addressForm.value.country }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Delivery Method:</span>
+                        <span class="value">{{ getDeliveryLabel(deliveryPaymentForm.value.deliveryMethod) }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Payment Method:</span>
+                        <span class="value">{{ getPaymentLabel(deliveryPaymentForm.value.paymentMethod) }}</span>
+                    </div>
+                    <div class="summary-item">
+    <span class="label">Total Price:</span>
+<span class="value"> € {{ totalPrice | number:'1.2-2' }} </span>
+</div>
+                </div>
+            </div>
+            <div class="flex pt-4 justify-content-between">
+                <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                <p-button label="Complete Order" icon="pi pi-check" iconPos="right" 
+                          (onClick)="completeOrder()" />
+            </div>
+        </ng-template>
+    </p-stepperPanel>
+</p-stepper>

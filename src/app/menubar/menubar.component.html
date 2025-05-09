@@ -11,7 +11,11 @@
             </p-button>
             <p-button [routerLink]="['register']" [text]="true" icon="pi pi-user-plus" label="Register">
             </p-button>
-            <i class="pi pi-shopping-cart text-xl" pBadge [value]="totalCartItems" [badgeDisabled]="totalCartItems === 0"></i>
+            
+
+           <button [routerLink]="'/cart'" pButton icon="pi pi-shopping-cart">
+  <p-badge [value]="totalCartItems" [severity]="'danger'" [styleClass]="'p-badge-up'"></p-badge>
+</button>
         </div>
     </div>
 </nav>

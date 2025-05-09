@@ -1,0 +1,36 @@
+.success-page {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.success-page h2 {
+  font-size: 24px;
+  margin-bottom: 20px; /* Add margin-bottom for spacing */
+  color: #284ea7; /* Green color for success */
+  display: inline-flex;
+  align-items: center;
+}
+
+.success-page h2 i {
+  margin-left: 10px; /* Add margin to the left of the icon for spacing */
+}
+
+.success-page p {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 30px; /* Add margin-bottom for spacing */
+}
+
+.success-page button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.success-page button:hover {
+  background-color: #0056b3;
+}
