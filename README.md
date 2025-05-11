@@ -1,7 +1,7 @@
 
 # E-Commerce Front-End (Angular)
 
-**Location:** Konstanz, Germany  
+**Location:** University of Konstanz, Germany  
 **Year:** 2024  
 **Role:** Front-End Developer
 
